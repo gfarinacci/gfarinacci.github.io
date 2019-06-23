@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+	<title>Giuseppe Farinacci</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+	<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Giuseppe" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>My Blog | Giuseppe</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="My Blog" />
+<meta name="author" content="Giuseppe Farinacci" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is a blog to keep my repositories documented, the main topics are Computer Science, Finance and Mathematics." />
+<meta property="og:description" content="This is a blog to keep my repositories documented, the main topics are Computer Science, Finance and Mathematics." />
+<meta property="og:site_name" content="Giuseppe" />
+<link rel="next" href="/blog/2" />
+<script type="application/ld+json">
+{"description":"This is a blog to keep my repositories documented, the main topics are Computer Science, Finance and Mathematics.","author":{"@type":"Person","name":"Giuseppe Farinacci"},"@type":"WebPage","url":"/blog/","headline":"My Blog","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+  <body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="" class="logo"><strong>Giuseppe</strong> <span>Farinacci</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		        <li><a href="">Home</a></li>
+	    	
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="/resume.html">My Resume</a></li>
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="/blog" class="button special fit">Blog</a></li>
+	</ul>
+</nav>
+ 
+    
+    <!-- Main -->
+    <div id="main" class="alt">
+
+      <!-- This loops through the paginated posts -->
+<section id="posts">
+  <div class="inner">
+    
+    
+    <header class="major">
+      <h1><a href="/2018/11/05/jupyterhadoop.html">Jupyter and Hadoop</a></h1>
+    </header>
+    <p>
+      <span class="image left"><img src="/assets/images/pic_08.png" alt="" /></span>
+      <p class="postText"><p>In order to run Jupyter you should install it on the server:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install jupyter --user
+</code></pre></div></div>
+
+<p>This command will work even if you don’t have root access, installing Jupyter in your home directory rather than in /usr/local/lib/python.
+</p>
+    </p>
+    <div align="right">
+      <a href="/2018/11/05/jupyterhadoop.html" class="button">Read More</a>
+    </div>
+    
+    <hr />
+    
+    
+    <header class="major">
+      <h1><a href="/2018/07/21/mysqlphp.html">MySQL and PHP</a></h1>
+    </header>
+    <p>
+      <span class="image left"><img src="/assets/images/pic_06.png" alt="" /></span>
+      <p class="postText"><p>The following set of PHP functions let’s you connect to MySQL more easily. In order to use them you have to download the tinyPHP.php file from <a href="https://github.com/gfarinacci/tinyPHP/blob/master/tinyPHP.php">GitHub</a>.</p>
+
+<p>After you should edit the tinyPHP.php file to set the MySQL database parameters:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$db_params = array('localhost', 'user', 'password', 'database');
+</code></pre></div></div>
+</p>
+    </p>
+    <div align="right">
+      <a href="/2018/07/21/mysqlphp.html" class="button">Read More</a>
+    </div>
+    
+    <hr />
+    
+    
+    <header class="major">
+      <h1><a href="/2018/07/21/diceroller.html">Dice Roller</a></h1>
+    </header>
+    <p>
+      <span class="image left"><img src="/assets/images/pic_07.png" alt="" /></span>
+      <p class="postText"><p>If you need to roll a dice, you will find something useful <a href="https://github.com/gfarinacci/diceRoller">here</a>!</p>
+
+<p><br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</p>
+    </p>
+    <div align="right">
+      <a href="/2018/07/21/diceroller.html" class="button">Read More</a>
+    </div>
+    
+    <hr />
+    
+    
+    <header class="major">
+      <h1><a href="/2018/07/20/systemicrisk.html">Systemic Risk Measurement</a></h1>
+    </header>
+    <p>
+      <span class="image left"><img src="/assets/images/pic_05.png" alt="" /></span>
+      <p class="postText"><p>In the European insurance market the risk management process is based on the Solvency II Framework Directive (S2). According to S2 the insurance companies must publish a new market-consistent balance sheet.</p>
+
+<p>In this statement we can find the Best Estimate of Liabilities (BE), the Technical Provisions (TP) and the Solvency Capital Requirements (SCR). The BE is the unbiased estimate of the present value of expected future cash flows. In other words it is the probability-weighted average (also referred to as the mean) with no explicit margins incorporated. If we add the Risk Margin (RM) to the BE we get the TP. Finally, the SCR is based on a Value-at-Risk measure calibrated to a 99.5% confidence level over a 1-year time horizon. The SCR covers all risks that an insurer faces and takes full account of any risk mitigation techniques applied by the insurer.
+</p>
+    </p>
+    <div align="right">
+      <a href="/2018/07/20/systemicrisk.html" class="button">Read More</a>
+    </div>
+    
+    <hr />
+    
+    
+    <header class="major">
+      <h1><a href="/2018/07/19/demographic.html">Demographic Indicator</a></h1>
+    </header>
+    <p>
+      <span class="image left"><img src="/assets/images/pic_03.jpg" alt="" /></span>
+      <p class="postText"><p>The following R function let you download demographic indicators from the Eurostat website and save them in a dataframe with ease.</p>
+
+<p>You can download and install the function directly from <a href="https://github.com/gfarinacci/lifeTables">GitHub</a>:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>library(devtools)
+install_github("ropengov/eurostat")
+install_github("hadley/rvest")
+install_github("gfarinacci/lifeTables")
+library(lifeTables)
+</code></pre></div></div>
+</p>
+    </p>
+    <div align="right">
+      <a href="/2018/07/19/demographic.html" class="button">Read More</a>
+    </div>
+    
+    <hr />
+    
+  </div>
+</section>
+
+<!-- Pagination links -->
+<div class="pagination">
+  <div class="inner">
+    <div class="row">
+      <div class="4u" align="center">
+        
+        <span class="button">Previous</span>
+        
+      </div>
+      <div class="4u" align="center">
+        <span class="page_number ">
+          Page: 1 of 2
+        </span>
+      </div>
+      <div class="4u" align="center">
+        
+        <a href="/blog/2" class="button special">Next</a>  
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="/assets/js/main.js"></script>
+<script src="/assets/js/misc.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+</script>
+
+  </body>
+
+</html>

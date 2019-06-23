@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-06-23T18:50:39+02:00</updated><id>/feed.xml</id><title type="html">Giuseppe</title><subtitle>This is a blog to keep my repositories documented,&lt;br /&gt; the main topics are Computer Science, Finance and Mathematics.</subtitle><author><name>Giuseppe Farinacci</name></author><entry><title type="html">Jupyter and Hadoop</title><link href="/2018/11/05/jupyterhadoop.html" rel="alternate" type="text/html" title="Jupyter and Hadoop" /><published>2018-11-05T00:00:00+01:00</published><updated>2018-11-05T00:00:00+01:00</updated><id>/2018/11/05/jupyterhadoop</id><content type="html" xml:base="/2018/11/05/jupyterhadoop.html">&lt;p&gt;In order to run Jupyter you should install it on the server:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install jupyter --user
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This command will work even if you don’t have root access, installing Jupyter in your home directory rather than in /usr/local/lib/python.
+&lt;!--Break--&gt;&lt;/p&gt;
+
+&lt;p&gt;Then in order to use the IDE there are two ways:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Using a remote display protocol&lt;/li&gt;
+  &lt;li&gt;Making an SSH Tunnel&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Of course I prefer the second option:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -L 8888:127.0.0.1:8888 user@server_address
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then you can run the IDE:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python -m notebook --ip=127.0.0.1 --port=8888
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This allows you to use Jupyter on your browser. Of course you should change the default port.&lt;/p&gt;</content><author><name>Giuseppe Farinacci</name></author><summary type="html">In order to run Jupyter you should install it on the server: pip install jupyter --user</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/pic_08.png" /></entry><entry><title type="html">Dice Roller</title><link href="/2018/07/21/diceroller.html" rel="alternate" type="text/html" title="Dice Roller" /><published>2018-07-21T00:00:00+02:00</published><updated>2018-07-21T00:00:00+02:00</updated><id>/2018/07/21/diceroller</id><content type="html" xml:base="/2018/07/21/diceroller.html">&lt;p&gt;If you need to roll a dice, you will find something useful &lt;a href=&quot;https://github.com/gfarinacci/diceRoller&quot;&gt;here&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;br /&gt;
+&lt;!--Break--&gt;&lt;/p&gt;</content><author><name>Giuseppe Farinacci</name></author><summary type="html">If you need to roll a dice, you will find something useful here!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/pic_07.png" /></entry><entry><title type="html">MySQL and PHP</title><link href="/2018/07/21/mysqlphp.html" rel="alternate" type="text/html" title="MySQL and PHP" /><published>2018-07-21T00:00:00+02:00</published><updated>2018-07-21T00:00:00+02:00</updated><id>/2018/07/21/mysqlphp</id><content type="html" xml:base="/2018/07/21/mysqlphp.html">&lt;p&gt;The following set of PHP functions let’s you connect to MySQL more easily. In order to use them you have to download the tinyPHP.php file from &lt;a href=&quot;https://github.com/gfarinacci/tinyPHP/blob/master/tinyPHP.php&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;After you should edit the tinyPHP.php file to set the MySQL database parameters:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$db_params = array('localhost', 'user', 'password', 'database');
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;!--Break--&gt;
+&lt;p&gt;Include the file and connect to the database:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;include_once 'tinyPHP.php';
+    
+// Connect to database
+$conn = db_connect($db_params);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Build the query and submit it:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Build the query
+$query = 'SELECT * FROM Users WHERE id_user&amp;gt;%s AND id_user&amp;lt;%s';
+$query_params = array(1,7);
+$sql = build_query($conn, $query, $query_params);
+
+// Get the results
+$results = $conn-&amp;gt;query($sql);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Define the parameters to return, the function to display results and the default function:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$query_params = ['firstname','lastname'];
+function f_results($array) { echo vsprintf('&amp;lt;p&amp;gt;%s %s&amp;lt;/p&amp;gt;', $array); }
+function f_default() { echo 'No results to display'; }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Process the results and close the connection:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Process the results
+process_results($results,$query_params,'f_results','f_default');
+// Close the connection
+$conn-&amp;gt;close();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Easier done than said.&lt;/p&gt;</content><author><name>Giuseppe Farinacci</name></author><summary type="html">The following set of PHP functions let’s you connect to MySQL more easily. In order to use them you have to download the tinyPHP.php file from GitHub.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/pic_06.png" /></entry><entry><title type="html">Systemic Risk Measurement</title><link href="/2018/07/20/systemicrisk.html" rel="alternate" type="text/html" title="Systemic Risk Measurement" /><published>2018-07-20T00:00:00+02:00</published><updated>2018-07-20T00:00:00+02:00</updated><id>/2018/07/20/systemicrisk</id><content type="html" xml:base="/2018/07/20/systemicrisk.html">&lt;p&gt;In the European insurance market the risk management process is based on the Solvency II Framework Directive (S2). According to S2 the insurance companies must publish a new market-consistent balance sheet.&lt;/p&gt;
+
+&lt;p&gt;In this statement we can find the Best Estimate of Liabilities (BE), the Technical Provisions (TP) and the Solvency Capital Requirements (SCR). The BE is the unbiased estimate of the present value of expected future cash flows. In other words it is the probability-weighted average (also referred to as the mean) with no explicit margins incorporated. If we add the Risk Margin (RM) to the BE we get the TP. Finally, the SCR is based on a Value-at-Risk measure calibrated to a 99.5% confidence level over a 1-year time horizon. The SCR covers all risks that an insurer faces and takes full account of any risk mitigation techniques applied by the insurer.
+&lt;!--Break--&gt;
+So, we could say that we have a loss distribution with the mean equal to the BE and the 99,5% VaR equal to the sum of the TP and the SCR. Furthermore if we suppose that this distribution is log-normal we find the following equations:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbb{E}(Z) = e^{\mu + \sigma^{2}/2}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\alpha = F(VaR_{\alpha(Z)}) = \Phi(\frac{\ln(VaR_{\alpha}(Z)) - \mu}{\sigma})&lt;/script&gt;
+
+&lt;p&gt;If the problem is well-placed we can easily find the unique solution of the system as the following:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\sigma = \Phi^{-1}(\alpha) + \sqrt{(\Phi^{-1}(\alpha))^{2} -2 \ln(\frac{VaR_{\alpha}(Z)}{\mathbb{E}(Z)})}&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu = \ln(VaR_{\alpha}(Z)) - \sigma \Phi^{-1}(\alpha)&lt;/script&gt;
+
+&lt;p&gt;Now we have the log-normal parameters for each company that we’re analyzing. Let us introduce a new risk measure that takes into account that the market is composed by different companies. We define the CoVaR such as the α-quantile of the conditional distribution of the j-th company with respect to an event.&lt;/p&gt;
+
+&lt;p&gt;In particular we want to study what happens to the loss distribution of the j-th company when a certain number of companies are stressed, i.e. when the following event occur:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;C(I) = \bigcap_{i \in I} \{X^{i} = VaR^{i}_{\alpha}\}&lt;/script&gt;
+
+&lt;p&gt;Where &lt;script type=&quot;math/tex&quot;&gt;X^{i}&lt;/script&gt; is the loss distribution of the i-th institution. So we define the CoVaR as:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbb{P}(X^{j} \leq CoVaR_{\alpha}^{j | C(I)} | C(I)) = \alpha&lt;/script&gt;
+
+&lt;p&gt;But we are interested in the variation of the CoVaR between the normal state (i.e. we define a state as normal when &lt;script type=&quot;math/tex&quot;&gt;C(\emptyset) = \Omega&lt;/script&gt;) and the stressed state (i.e. we define a state as stressed when &lt;script type=&quot;math/tex&quot;&gt;X^{i} = VaR_{\alpha}(X^{i})&lt;/script&gt;). So we define the following risk measure:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta CoVaR_{\alpha}^{j | C(I)} = CoVaR_{\alpha}^{j | C(I)} - VaR_{\alpha}^{j}&lt;/script&gt;
+
+&lt;p&gt;Under the log-normal hypothesis we can estimate the CoVaR:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;using the mean and the standard deviation computed previously;&lt;/li&gt;
+  &lt;li&gt;supposing a geometric brownian motion &lt;script type=&quot;math/tex&quot;&gt;Y_{t + \Delta t} = Y_{t} + \mu Y_{t} \Delta t + \sigma Y_{t} \sqrt{\Delta t}&lt;/script&gt; as the underlying stochastic process.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We can use the following R code to implement the Monte Carlo method:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;geoBrowMotion &amp;lt;− function(len, dt, me, sd, yo)
+{
+    v &amp;lt;− vector(mode=&quot;numeric&quot;, length=len)
+    v[1] &amp;lt;− yo
+    for(i in 2:len)
+    {
+        norm &amp;lt;− rnorm(1, mean = 0, sd = 1)
+        v[ i ] &amp;lt;− v[i?1] + me?v[i?1]?dt + sd?v[i?1]?sqrt(dt)?norm
+    }
+    return(v)
+}
+
+monteCarloMethod &amp;lt;− function(iteration, len, dt, me, sd, yo)
+{
+    Z &amp;lt;− vector(mode=&quot;numeric&quot;, length=len)
+    for(i in 1:iteration)
+    {
+        m&amp;lt;− geoBrowMotion(len, dt, me, sd, yo)
+        Z &amp;lt;− Z + m/iteration
+    }
+    return (Z)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then we can estimate the relation between the quantiles using a quantile logarithmic regression:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\log X^{j} = \beta_{0}^{\alpha} + \sum_{i \in I} \beta_{i}^{\alpha} \log X^{i} + \epsilon^{j}&lt;/script&gt;
+
+&lt;p&gt;The following R code allows us to use this kind of regression:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(quantreg)
+log_reg&amp;lt;− rq(logX1 ≈ logX2 + logX3 + ... , data=log_data, tau = alpha)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, we can compute the Delta CoVaR as following:&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Delta CoVaR_{\alpha}^{j | C(I)} = \exp\{\hat{\beta}_{0}^{\alpha} + \sum_{i \in I} \hat{\beta}_{i}^{\alpha} \log(VaR^{i}_{\alpha})\} - VaR_{\alpha}^{j}&lt;/script&gt;</content><author><name>Giuseppe Farinacci</name></author><summary type="html">In the European insurance market the risk management process is based on the Solvency II Framework Directive (S2). According to S2 the insurance companies must publish a new market-consistent balance sheet.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/pic_05.png" /></entry><entry><title type="html">Demographic Indicator</title><link href="/2018/07/19/demographic.html" rel="alternate" type="text/html" title="Demographic Indicator" /><published>2018-07-19T00:00:00+02:00</published><updated>2018-07-19T00:00:00+02:00</updated><id>/2018/07/19/demographic</id><content type="html" xml:base="/2018/07/19/demographic.html">&lt;p&gt;The following R function let you download demographic indicators from the Eurostat website and save them in a dataframe with ease.&lt;/p&gt;
+
+&lt;p&gt;You can download and install the function directly from &lt;a href=&quot;https://github.com/gfarinacci/lifeTables&quot;&gt;GitHub&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(devtools)
+install_github(&quot;ropengov/eurostat&quot;)
+install_github(&quot;hadley/rvest&quot;)
+install_github(&quot;gfarinacci/lifeTables&quot;)
+library(lifeTables)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;!--Break--&gt;
+&lt;p&gt;This library allows you to download the following indicators: Age specific death rate, Life expectancy at given exact age, Probability of dying between ages, Probability of surviving between exact ages, Person-years lived between exact age, Number left alive at given exact age, Total person-years lived above given exact age. For example if we want to plot the person-years lived between exact age for males, females and the general population in Italy in 2015:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;library(lifeTables)
+m &amp;lt;- lifeTable(geo = &quot;IT&quot;, sex = &quot;M&quot;, time = 2015, indic_de = &quot;Lx&quot;)
+f &amp;lt;- lifeTable(geo = &quot;IT&quot;, sex = &quot;F&quot;, time = 2015, indic_de = &quot;Lx&quot;)
+t &amp;lt;- lifeTable(geo = &quot;IT&quot;, sex = &quot;T&quot;, time = 2015, indic_de = &quot;Lx&quot;)
+m &amp;lt;- m[-86,]
+names(m) &amp;lt;- c(&quot;age_m&quot;, &quot;Lx Male&quot;)
+f &amp;lt;- f[-86,]
+names(f) &amp;lt;- c(&quot;age_f&quot;, &quot;Lx Female&quot;)
+t &amp;lt;- t[-86,]
+names(t) &amp;lt;- c(&quot;Age&quot;, &quot;Lx Total&quot;)
+t &amp;lt;- cbind(t,m,f)
+df&amp;lt;-t[,c(&quot;Age&quot;,&quot;Lx Total&quot;,&quot;Lx Male&quot;,&quot;Lx Female&quot;)]
+remove(f,m,t)
+require(ggplot2)
+require(reshape2)
+df &amp;lt;- melt(df ,  id.vars = 'Age', variable.name = 'Series')
+names(df) &amp;lt;- c(&quot;Age&quot;, &quot;Series&quot;, &quot;Lx&quot;)
+ggplot(df, aes(Age,Lx)) + geom_line(aes(colour = Series))
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We get the following plot:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../../../assets/images/pic_04.png&quot; alt=&quot;Alt&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The plot let us infer that mortality hits harder on men.&lt;/p&gt;</content><author><name>Giuseppe Farinacci</name></author><summary type="html">The following R function let you download demographic indicators from the Eurostat website and save them in a dataframe with ease.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/pic_03.jpg" /></entry><entry><title type="html">A/B Testing</title><link href="/2018/07/18/abtesting.html" rel="alternate" type="text/html" title="A/B Testing" /><published>2018-07-18T00:00:00+02:00</published><updated>2018-07-18T00:00:00+02:00</updated><id>/2018/07/18/abtesting</id><content type="html" xml:base="/2018/07/18/abtesting.html">&lt;p&gt;Once upon a time there was a Google engineer looking for the best shade of blue. In order to fulfill his quest, the quest of the perfect shade of blue, he tested &lt;a href=&quot;https://www.nytimes.com/2009/03/01/business/01marissa.html?pagewanted=print&amp;amp;_r=0&quot; title=&quot;Putting a Bolder Face on Google&quot;&gt;41 different&lt;/a&gt; shades of blue with a multivariate testing.&lt;/p&gt;
+
+&lt;p&gt;This story shows a rapidly growing way to making decisions, a way based on data. Could a similar approach help your organization? Yes of course, you could for example implement an A/B test to optimize your website UI. A/B testing is a method that compares 2 versions of something to discover which one is the best. With A/B testing you can improve your website by pitting your current website or app against one variation. To conduct an A/B test you first need an existing website or app, then you must pick an area you wish to improve. Secondly you must change one variable, it’s a crucial aspect of A/B testing that you change only one variable at a time. Then it’s down to how, there are various application that enable A/B testing such as:
+&lt;!--Break--&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.google.com/analytics/optimize/&quot;&gt;Google Optimize&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.abtasty.com/uk/&quot;&gt;A/B Tasty&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://vwo.com/&quot;&gt;Optimizely&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Finally, you should decide the number of users you will test with. To answer this question, you should consider how long the test will run and the percentage of users you want to see the alternative version.&lt;/p&gt;
+
+&lt;p&gt;Now you have the data, let’s suppose you found a difference. Is this difference statistically relevant? To answer this question, you should perform a statistic test to find out if the quantities you observed differ with over 95% certainty. Therefore the significance level of this test is &lt;script type=&quot;math/tex&quot;&gt;\alpha = 0.05&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s suppose you are optimizing the conversion rate, in this case you should test either null hypothesis: &lt;script type=&quot;math/tex&quot;&gt;H_{0}: p_{X} - p_{Y} = 0&lt;/script&gt;
+Against the alternative: &lt;script type=&quot;math/tex&quot;&gt;H_{1}: p_{X} - p_{Y} \not= 0&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The decision rule is as follow: 
+&lt;script type=&quot;math/tex&quot;&gt;reject\ H_{0}\ if\ abs(\frac{\hat{p}_{X} - \hat{p}_{Y}}{\sqrt{\frac{\hat{p}_{0}(1 - \hat{p}_{0})}{n_{X}} + \frac{\hat{p}_{0}(1 - \hat{p}_{0})}{n_{Y}}}}) &gt; z_{\alpha / 2}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, if you rejected &lt;script type=&quot;math/tex&quot;&gt;H_{0}&lt;/script&gt; you can assert that the X version is better than the Y version of your website or app. It’s important to choose the right test accordingly with the quantity you’re measuring: mean or proportion. The online tools allow you to perform two-sided tests on the mean, different statistic tests should be implemented from scratch.&lt;/p&gt;</content><author><name>Giuseppe Farinacci</name></author><summary type="html">Once upon a time there was a Google engineer looking for the best shade of blue. In order to fulfill his quest, the quest of the perfect shade of blue, he tested 41 different shades of blue with a multivariate testing.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="/assets/images/pic_02.png" /></entry></feed>
