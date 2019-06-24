@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Giuseppe Farinacci</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+	<link type="application/atom+xml" rel="alternate" href="https://gfarinacci.github.io/feed.xml" title="Giuseppe" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>MySQL and PHP | Giuseppe</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="MySQL and PHP" />
+<meta name="author" content="Giuseppe Farinacci" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Just a tiny library" />
+<meta property="og:description" content="Just a tiny library" />
+<link rel="canonical" href="https://gfarinacci.github.io/coding/2018/07/21/mysqlphp.html" />
+<meta property="og:url" content="https://gfarinacci.github.io/coding/2018/07/21/mysqlphp.html" />
+<meta property="og:site_name" content="Giuseppe" />
+<meta property="og:image" content="https://gfarinacci.github.io/assets/images/pic_06.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-07-21T00:00:00+02:00" />
+<script type="application/ld+json">
+{"description":"Just a tiny library","author":{"@type":"Person","name":"Giuseppe Farinacci"},"@type":"BlogPosting","url":"https://gfarinacci.github.io/coding/2018/07/21/mysqlphp.html","image":"https://gfarinacci.github.io/assets/images/pic_06.png","headline":"MySQL and PHP","dateModified":"2018-07-21T00:00:00+02:00","datePublished":"2018-07-21T00:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://gfarinacci.github.io/coding/2018/07/21/mysqlphp.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+
+    <!-- Wrapper -->
+<div id="wrapper">
+
+<!-- Header -->
+<header id="header">
+	<a href="https://gfarinacci.github.io/" class="logo"><strong>Giuseppe</strong> <span>Farinacci</span></a>
+	<nav>
+		<a href="#menu">Menu</a>
+	</nav>
+</header>
+
+<!-- Menu -->
+<nav id="menu">
+	<ul class="links">
+        
+		    
+		
+		    
+		
+		    
+		        <li><a href="https://gfarinacci.github.io/">Home</a></li>
+	    	
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		
+		    
+		        <li><a href="https://gfarinacci.github.io/categories.html">Categories</a></li>
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="https://gfarinacci.github.io/resume.html">My Resume</a></li>
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+		    
+		
+	</ul>
+	<ul class="actions vertical">
+		<li><a href="/blog" class="button special fit">Blog</a></li>
+	</ul>
+</nav>
+ 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- One -->
+<section id="one">
+	<div class="inner">
+		<header class="major">
+			<h1>MySQL and PHP</h1>
+		</header>
+		<span class="image left"><img src="/assets/images/pic_06.png" alt="" /></span>
+		<p><p>The following set of PHP functions let’s you connect to MySQL more easily. In order to use them you have to download the tinyPHP.php file from <a href="https://github.com/gfarinacci/tinyPHP/blob/master/tinyPHP.php">GitHub</a>.</p>
+
+<p>After you should edit the tinyPHP.php file to set the MySQL database parameters:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$db_params = array('localhost', 'user', 'password', 'database');
+</code></pre></div></div>
+<!--Break-->
+<p>Include the file and connect to the database:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>include_once 'tinyPHP.php';
+    
+// Connect to database
+$conn = db_connect($db_params);
+</code></pre></div></div>
+
+<p>Build the query and submit it:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Build the query
+$query = 'SELECT * FROM Users WHERE id_user&gt;%s AND id_user&lt;%s';
+$query_params = array(1,7);
+$sql = build_query($conn, $query, $query_params);
+
+// Get the results
+$results = $conn-&gt;query($sql);
+</code></pre></div></div>
+
+<p>Define the parameters to return, the function to display results and the default function:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$query_params = ['firstname','lastname'];
+function f_results($array) { echo vsprintf('&lt;p&gt;%s %s&lt;/p&gt;', $array); }
+function f_default() { echo 'No results to display'; }
+</code></pre></div></div>
+
+<p>Process the results and close the connection:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Process the results
+process_results($results,$query_params,'f_results','f_default');
+// Close the connection
+$conn-&gt;close();
+</code></pre></div></div>
+
+<p>Easier done than said.</p>
+</p>
+	</div>
+</section>
+
+</div>
+
+<!-- Scripts -->
+<script src="https://gfarinacci.github.io/assets/js/jquery.min.js"></script>
+<script src="https://gfarinacci.github.io/assets/js/jquery.scrolly.min.js"></script>
+<script src="https://gfarinacci.github.io/assets/js/jquery.scrollex.min.js"></script>
+<script src="https://gfarinacci.github.io/assets/js/skel.min.js"></script>
+<script src="https://gfarinacci.github.io/assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="https://gfarinacci.github.io/assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="https://gfarinacci.github.io/assets/js/main.js"></script>
+<script src="https://gfarinacci.github.io/assets/js/misc.js"></script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        inlineMath: [['$','$']]
+      }
+    });
+</script>
+
+</body>
+
+</html>
