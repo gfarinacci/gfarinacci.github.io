@@ -1,0 +1,50 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  gh_user: gfarinacci
+  gh_repo: gfarinacci.github.io
+  gh_pass: $(github_pat)
+  gh_email: giuseppe.farinacci@gmail.com
+  gh_auth_header: $(echo -n "${gh_user}:$(github_pat)" | base64);
+
+steps:
+- task: UseRubyVersion@0
+  inputs:
+    versionSpec: '>= 2.5'
+
+- script: |
+    gem install bundler
+    bundle install --retry=3 --jobs=4
+  displayName: '[Jekyll] Install Jekyll and Dependencies'
+
+- script: mkdir /tmp/build
+  displayName: '[Script] Mkdir /tmp/build'
+
+- script: git clone https://$(gh_pass)@github.com/$(gh_user)/$(gh_repo).git /tmp/build
+  displayName: "[Git] Clone GitHub Pages Repository"
+
+- script: |
+    bundle exec jekyll build -d /tmp/build;
+  displayName: '[Jekyll] Build Jekyll Static Site'
+
+- script: |
+    git config user.email $(gh_email)
+    git config user.name $(gh_user)
+  workingDirectory: /tmp/build
+  displayName: '[Git] Configure User'
+
+- script: |
+    git add --all;
+    git commit -m"Pipelines-Bot: Updated site via $(Build.SourceVersion)";
+  workingDirectory: /tmp/build
+  displayName: '[Git] Creating commit'
+
+- script: |
+    git remote add tokenOrigin https://$(gh_user):$(gh_pass)@github.com/$(gh_user)/$(gh_repo).git
+    git push tokenOrigin master
+  workingDirectory: /tmp/build
+  displayName: '[Git] Push changes to remote'
